@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "creativeux/centos70-64-docker"
+  config.vm.box = "creativeux/centos7-64-docker"
   config.vm.network :forwarded_port, host: 9000, guest: 9000
   config.vm.network :forwarded_port, host: 35729, guest: 35729
 

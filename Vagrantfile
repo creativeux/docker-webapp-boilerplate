@@ -13,8 +13,4 @@ Vagrant.configure("2") do |config|
         args: "--privileged=true -t -i -p 9000:9000 -p 35729:35729 -v /webapp:/var/www",
         daemonize: true
     end
-
-    config.push.define "atlas" do |push|
-      push.app = "creativeux/centos7-64-docker"
-    end
 end

@@ -10,6 +10,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "docker" do |d|
       d.pull_images "creativeux/centos-grunt:latest"
       d.run "creativeux/centos-grunt",
+        cmd: "npm install; bower install; grunt serve",
         args: "--privileged=true -t -i -p 9000:9000 -p 35729:35729 -v /webapp:/var/www",
         daemonize: true
     end

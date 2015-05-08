@@ -22,9 +22,15 @@ development.
 ###Tips
 1. You can't just use any base box.  The VM needs to be customized to allow for the Docker daemon to provision.  This includes things like:
   1. Creating a `docker` group and making sure that the `docker` and `vagrant` users are in it
-  2. (need to fill this in) 
+  2. (need to fill this in)
+2. When you use `vagrant destroy` you will have to go through the whole Docker image download again because the cache lived in the Vagrant VM.
+  1. When you're done working, use `vagrant suspend` to save the state of your environment and `vagrant resume` to bring the environment back.
+   
+###Todo
+1. Parallels provider
+2. Restart policy for `vagrant halt` or reboot scenarios 
 
-##Docker & boot2docker
+##boot2docker & VirtualBox
 ###Requirements
 1. Install boot2docker
 
@@ -36,7 +42,7 @@ development.
   2. `boot2docker start` (first time & after `boot2docker stop` or reboot)
   3. `boot2docker ip` (record this IP address, it will be where the app will be running)
 4. Start the container with all of the appropriate mappings
-  1. `docker run -t -i -p 9000:9000 -p 35729:35729 -v $(pwd):/var/www creativeux/centos-grunt` NOTE: This will take a while the first time because `npm install` will be downloading the Internet.  You should see the process in stdout, though.
+  1. `docker run --privileged=true -it -p 9000:9000 -p 35729:35729 -v $(pwd):/var/www creativeux/centos-grunt` NOTE: This will take a while the first time because `npm install` will be downloading the Internet.  You should see the process in stdout, though.
 5. Open `{boot2docker ip}:9000` in your web browser
 
 ###Tips

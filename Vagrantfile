@@ -4,7 +4,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, host: 9000, guest: 9000
   config.vm.network :forwarded_port, host: 35729, guest: 35729
 
-  config.vm.synced_folder ".", "/webapp",mount_options: ["dmode=777","fmode=777"]
+  config.vm.synced_folder ".", "/webapp"
 
   # Hack? '--privileged=true' is the only way I was able to get the volumes to map with permissions to run npm installs.
   config.vm.provision "docker" do |d|
